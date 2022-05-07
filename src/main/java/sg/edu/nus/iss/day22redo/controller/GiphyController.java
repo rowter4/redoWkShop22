@@ -25,10 +25,12 @@ public class GiphyController {
         @RequestParam String rating  ) {
             
             System.out.printf(">>> searchPhrase = %s, limit = %d, rating = %s\n", searchPhrase, limit, rating);
-            model.addAttribute("searchPhrase", searchPhrase);
+            
 
             List<String> gifs = giphySvc.getGifs(searchPhrase, limit, rating);
 
+            model.addAttribute("searchPhrase", searchPhrase);
+            model.addAttribute("gifs", gifs);
             return "result"; 
         }
 
