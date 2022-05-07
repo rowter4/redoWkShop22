@@ -1,5 +1,7 @@
 name: Compile, test, deploy
 on: ["push"]  # will trigger when we do a push on github
+env:
+  GIPHY_API_KEY: ${{ secrets.giphy_api_key }} # will add this env once the secret is added in github
 jobs:
   step1:
     runs-on: ubuntu-latest #this is an empty ubuntu machine
@@ -14,7 +16,7 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17' # parameters are taking in string only
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.3
+        uses: stCarolas/setup-maven@v4.3 
         with:
           maven-version: '3.8.4'
       - name: Run the test for the app
